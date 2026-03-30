@@ -1,0 +1,82 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tables</title>
+  <link rel="stylesheet" href="{% static 'bookmodule/main.css' %}">
+</head>
+<body>
+
+  <div class="center">
+    <h3>Table 1: Table<br>of Fruits and<br>Their Prices</h3>
+
+    <table class="t1">
+      <tr>
+        <th>Fruit</th>
+        <th>Price</th>
+      </tr>
+      <tr><td>Apple</td><td>$0.25</td></tr>
+      <tr><td>Orange</td><td>$0.50</td></tr>
+      <tr><td>Banana</td><td>$1.00</td></tr>
+      <tr><td>Pineapple</td><td>$2.00</td></tr>
+      <tr class="total-row">
+        <td><b>Total</b></td>
+        <td><b>$3.75</b></td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="table-caption">Table 2: A more complex sample table</p>
+
+  <table class="t2">
+    <tr>
+      <!-- left big image cell -->
+      <td class="imgcell" rowspan="2">
+        <!-- Put your image into static/bookmodule/images/desert.jpg (or change the name) -->
+        <img class="camelimg" src="{% static 'bookmodule/images/desert.jpg' %}" alt="Desert">
+      </td>
+
+      <!-- right title area -->
+      <td class="bigtitle" colspan="4">
+        <div class="bigtitle-text">
+          <b>Camelid comparison</b><br>
+          <b>Approximate as of 6/2011</b>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th># of humps</th>
+      <th>Indigenous region</th>
+      <th>Spits?</th>
+      <th>Produces wool?</th>
+    </tr>
+
+    <tr>
+      <th class="rowhead">Dromedary</th>
+      <td>1</td>
+      <td>Arabian Peninsula</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+
+    <tr>
+      <th class="rowhead">Camels (bactrian)</th>
+      <td>2</td>
+      <td>Africa/Asia</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+
+    <tr>
+      <th class="rowhead">Llamas</th>
+      <td>1</td>
+      <td>Andes Mountains</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+  </table>
+
+</body>
+</html>

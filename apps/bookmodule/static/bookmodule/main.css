@@ -1,0 +1,99 @@
+.linkbox{
+  display: block;
+  padding: 25px;
+  text-align: center;
+  font-size: 22px;
+  margin: 0;
+}
+
+/* Different background colors using id */
+#l1{ background: #bff5c9; }
+#l2{ background: #555; }
+#l3{ background: #000; }
+
+/* Link states */
+.linkbox:link { color: red; }
+.linkbox:visited { color: rgb(238, 229, 238); }
+.linkbox:hover { color: yellow; text-decoration: none; }
+.linkbox:active { color: white; }
+
+.formatting-title{
+  background: #f3f3d8;
+  color: #2f7d2f;
+  padding: 18px;
+  font-size: 42px;
+  font-family: serif;
+}
+
+.listing-title{
+  background: #5f9ea0;   /* teal-ish */
+  color: white;
+  padding: 18px;
+  font-size: 42px;
+  font-family: serif;
+}
+
+.center{
+  text-align: center;
+}
+
+.t1{
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.t1, .t1 th, .t1 td{
+  border: 2px solid #666;
+  padding: 3px 10px;
+}
+
+.t1 th{
+  font-weight: bold;
+}
+
+.total-row td{
+  font-weight: bold;
+}
+
+.table-caption{
+  text-align: center;
+  margin-top: 35px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.t2{
+  width: 70%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.t2, .t2 th, .t2 td{
+  border: 2px solid #666;
+  text-align: center;
+  padding: 6px 10px;
+}
+
+.imgcell{
+  width: 320px;
+}
+
+.camelimg{
+  width: 280px;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+}
+
+.bigtitle{
+  height: 160px;
+}
+
+.bigtitle-text{
+  font-size: 22px;
+}
+
+.rowhead{
+  font-weight: bold;
+  white-space: nowrap;
+}
