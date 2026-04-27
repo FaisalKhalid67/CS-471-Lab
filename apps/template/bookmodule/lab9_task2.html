@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<h2>Task 2: Publishers + Total Stock</h2>
+
+<table border="1" cellpadding="8">
+  <tr><th>Publisher</th><th>Total Stock</th></tr>
+  {% for p in pubs %}
+    <tr>
+      <td>{{ p.name }}</td>
+      <td>{{ p.total_stock|default:0 }}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

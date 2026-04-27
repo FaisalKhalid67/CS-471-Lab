@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<h2>Task 5: Highly Rated Books per Publisher (rating ≥ 4)</h2>
+
+<table border="1" cellpadding="8">
+  <tr><th>Publisher</th><th># Highly Rated Books</th></tr>
+  {% for p in pubs %}
+    <tr>
+      <td>{{ p.name }}</td>
+      <td>{{ p.high_rated_count }}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

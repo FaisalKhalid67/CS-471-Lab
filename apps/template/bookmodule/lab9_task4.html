@@ -1,0 +1,16 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<h2>Task 4: Price Stats per Publisher</h2>
+
+<table border="1" cellpadding="8">
+  <tr><th>Publisher</th><th>Avg</th><th>Min</th><th>Max</th></tr>
+  {% for p in pubs %}
+    <tr>
+      <td>{{ p.name }}</td>
+      <td>{{ p.avg_price|default:"-"|floatformat:2 }}</td>
+      <td>{{ p.min_price|default:"-"|floatformat:2 }}</td>
+      <td>{{ p.max_price|default:"-"|floatformat:2 }}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

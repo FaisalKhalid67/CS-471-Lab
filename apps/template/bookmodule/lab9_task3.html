@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<h2>Task 3: Oldest Book Date per Publisher</h2>
+
+<table border="1" cellpadding="8">
+  <tr><th>Publisher</th><th>Oldest Pubdate</th></tr>
+  {% for p in pubs %}
+    <tr>
+      <td>{{ p.name }}</td>
+      <td>{{ p.oldest_pubdate|default:"-" }}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

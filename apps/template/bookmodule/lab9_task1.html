@@ -1,0 +1,18 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<h2>Task 1: Books + Availability %</h2>
+<p>Total quantity of all books: {{ total_qty }}</p>
+
+<table border="1" cellpadding="8">
+  <tr><th>Title</th><th>Qty</th><th>Availability</th></tr>
+  {% for b in books %}
+    <tr>
+      <td>{{ b.title }}</td>
+      <td>{{ b.quantity }}</td>
+      <td>{{ b.availability|floatformat:2 }}%</td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="3">No books</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
