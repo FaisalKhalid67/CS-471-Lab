@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<h2>Part 1 - {{ action }} Book</h2>
+
+{% if error %}
+  <p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<form method="post">
+  {% csrf_token %}
+
+  <p>Title: <input name="title" value="{{ book_obj.title|default:'' }}"></p>
+  <p>Author: <input name="author" value="{{ book_obj.author|default:'' }}"></p>
+  <p>Price: <input name="price" value="{{ book_obj.price|default:'' }}"></p>
+  <p>Edition: <input name="edition" value="{{ book_obj.edition|default:'' }}"></p>
+
+  <button type="submit">{{ action }}</button>
+</form>
+
+<p><a href="{% url 'p1_listbooks' %}">Back to list</a></p>
+{% endblock %}

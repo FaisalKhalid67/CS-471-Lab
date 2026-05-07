@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q, F, Count, Sum, Avg, Min, Max, FloatField
 from django.db.models.functions import Cast
 from .models import Book9, Publisher9
-from .models import Book, Student, Address 
+from .models import Book, Student, Address
+from .forms import BookForm
 
 def index(request):
     return render(request, "bookmodule/index.html")
@@ -169,3 +170,83 @@ def lab9_task6(request):
     ).order_by("-filtered_books_count", "name")
 
     return render(request, "bookmodule/lab9_task6.html", {"pubs": pubs})
+
+def p1_listbooks(request):
+    books = Book.objects.all().order_by("id")
+    return render(request, "bookmodule/lab10_p1_list.html", {"books": books})
+
+def p1_addbook(request):
+    if request.method == "POST":
+        title = request.POST.get("title", "").strip()
+        author = request.POST.get("author", "").strip()
+        price = request.POST.get("price", "").strip()
+        edition = request.POST.get("edition", "").strip()
+
+        # Minimal manual validation (since Part 1 has no forms)
+        if title and author and price and edition:
+            Book.objects.create(
+                title=title,
+                author=author,
+                price=float(price),
+                edition=int(edition),
+            )
+            return redirect("p1_listbooks")
+
+        return render(request, "bookmodule/lab10_p1_form.html", {
+            "error": "All fields are required.",
+            "action": "Add",
+            "book": {"title": title, "author": author, "price": price, "edition": edition},
+        })
+
+    return render(request, "bookmodule/lab10_p1_form.html", {"action": "Add"})
+
+def p1_editbook(request, id):
+    b = get_object_or_404(Book, id=id)
+
+    if request.method == "POST":
+        b.title = request.POST.get("title", "").strip()
+        b.author = request.POST.get("author", "").strip()
+        b.price = float(request.POST.get("price", b.price))
+        b.edition = int(request.POST.get("edition", b.edition))
+        b.save()
+        return redirect("p1_listbooks")
+
+    return render(request, "bookmodule/lab10_p1_form.html", {"action": "Edit", "book_obj": b})
+
+def p1_deletebook(request, id):
+    b = get_object_or_404(Book, id=id)
+    b.delete()
+    return redirect("p1_listbooks")
+
+def p2_listbooks(request):
+    books = Book.objects.all().order_by("id")
+    return render(request, "bookmodule/lab10_p2_list.html", {"books": books})
+
+def p2_addbook(request):
+    if request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("p2_listbooks")
+    else:
+        form = BookForm()
+
+    return render(request, "bookmodule/lab10_p2_form.html", {"form": form, "action": "Add"})
+
+def p2_editbook(request, id):
+    b = get_object_or_404(Book, id=id)
+
+    if request.method == "POST":
+        form = BookForm(request.POST, instance=b)
+        if form.is_valid():
+            form.save()
+            return redirect("p2_listbooks")
+    else:
+        form = BookForm(instance=b)
+
+    return render(request, "bookmodule/lab10_p2_form.html", {"form": form, "action": "Edit"})
+
+def p2_deletebook(request, id):
+    b = get_object_or_404(Book, id=id)
+    b.delete()
+    return redirect("p2_listbooks")
